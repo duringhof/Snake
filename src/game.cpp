@@ -2,12 +2,18 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height)
-    : snake(grid_width, grid_height),
+Game::Game(std::size_t grid_width, std::size_t grid_height, Menu &menu)
+    : snake(grid_width, grid_height), _menu(menu),
+      _player(menu.getPlayerName()),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width-1)),
       random_h(0, static_cast<int>(grid_height-1)) {
   PlaceFood();
+}
+
+Game::~Game() {
+  _player.saveScore();
+  _menu.displayPlayerScore(_player.getName(), getScore(), getSize());
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
@@ -36,7 +42,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // After every second, update the window title.
     if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(score, frame_count);
+      renderer.UpdateWindowTitle(_player.getScore(), frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
     }
@@ -75,7 +81,7 @@ void Game::Update() {
 
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
-    score++;
+    _player.incrementScore();
     PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
@@ -83,5 +89,5 @@ void Game::Update() {
   }
 }
 
-int Game::GetScore() const { return score; }
-int Game::GetSize() const { return snake.size; }
+int Game::getScore() const { return _player.getScore(); }
+int Game::getSize() const { return snake.size; }
