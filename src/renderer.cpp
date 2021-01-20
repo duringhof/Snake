@@ -47,6 +47,23 @@ void Renderer::Render(Snake const &snake, SDL_Point const &food) {
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
+  // Render wall
+  SDL_SetRenderDrawColor(sdl_renderer, 0xCC, 0xCC, 0x00, 0xFF);
+  for (int i = 0; i < grid_width; i++) {
+    block.x = i * block.w;
+    block.y = 0 * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+    block.y = (grid_height-1) * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
+  for (int i = 1; i < grid_height-1; i++) {
+    block.x = 0 * block.w;
+    block.y = i * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+    block.x = (grid_width-1) * block.w;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
+
   // Render food
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
   block.x = food.x * block.w;
@@ -70,6 +87,9 @@ void Renderer::Render(Snake const &snake, SDL_Point const &food) {
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
   }
   SDL_RenderFillRect(sdl_renderer, &block);
+
+  
+  
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
