@@ -11,8 +11,15 @@ The Capstone Project concerned the integration of learnings throughout this prog
 ## Changes implemented
 Here, I will list and describe the changes I made to complete this project:
 
-1. Update this README.md to reflect current repository content.
-2. Nothing more yet...
+1. Update this README.md to reflect current repository content. While listed first, this reflects an activitiy that I try to continuously iterate in sync with the changes I make.
+
+2. Implemented some simple bug and style fixes:
+    * Food placement in the original code could be outside the visible area because placement occured in a space that was 1 "block" wider and higher than the define gridwidth and gridheight.
+    * The object Snake is passed to the Renderer object by const reference instead of const value to prevent the program from creating a copy of the object.
+    * The initialization order for the Snake constructor is changed to resemble the declaration order of variables.
+    * The initialization for the Snake constructor involved an implicit int to float conversion, which is now made explicit.
+
+3. Nothing more yet...
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
