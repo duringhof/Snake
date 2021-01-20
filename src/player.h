@@ -8,7 +8,7 @@
 class Player {
   
 public:
-  Player(std::string name);
+  explicit Player(std::string name);
   Player(std::string name, int score);
 
   int getScore() const;
