@@ -19,7 +19,27 @@ Here, I will list and describe the changes I made to complete this project:
     * The initialization order for the Snake constructor is changed to resemble the declaration order of variables.
     * The initialization for the Snake constructor involved an implicit int to float conversion, which is now made explicit.
 
-3. Nothing more yet...
+3. Added Player and Menu classes, respectively holding functionality to maintain a highscore record and to provide a user prompt asking for player name at the start of the game.
+
+4. Refined the Player class to compare result with previous results in case they exist, and to bring some extra reward to those that end up in the top 3.
+
+5. Implemented a wall around the playable area that can't be crossed.
+
+## Structure of the code
+
+Main.cpp instantiates 4 objects:
+
+   * Menu (the object that asks the player to enter a name)
+   * Renderer (the object that renders the actual playing screen)
+   * Controller (the object that handles userinput while playing the game)
+   * Game (Updating the steps in the game loop)
+         * This class also instantiates a Snake and a Player object respectively holding the functionality related to snake position and the functionality related to scoring the players performance.
+         
+## Project criteria adressed:
+
+* All criteria related to "Loops, Functions and I/O"
+* The first five criteria related to "Object Oriented Programming"
+* The first two criteria related to "Memory Management"
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
