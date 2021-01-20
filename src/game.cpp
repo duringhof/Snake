@@ -13,7 +13,7 @@ Game::Game(std::size_t grid_width, std::size_t grid_height, Menu &menu)
 
 Game::~Game() {
   _player.saveScore();
-  _menu.displayPlayerScore(_player.getName(), getScore(), getSize());
+  _menu.displayPlayerScore(getScore());
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,

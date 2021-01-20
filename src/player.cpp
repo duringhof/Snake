@@ -33,11 +33,15 @@ void Player::saveScore() {
     while (getline(file, line)) {
       std::istringstream lineStream(line);
       lineStream >> name;
+      lineStream >> score;
       if (name == this->_name) {
-        score = this->_score;
+        if (score < this->_score) {
+          score = this->_score;
+          std::cout << "Nice game " << name << " !!! You have crushed your record!\n";
+        } else {
+          std::cout << "Come on " << name << " !!! You were better before!\n";
+        }
         isNewPlayer = false;
-      } else {
-        lineStream >> score;
       }
       players.push_back(Player(name, score));
     }
@@ -52,6 +56,22 @@ void Player::saveScore() {
             [](const Player a, const Player &b) -> bool {
               return a._score > b._score;
             });
+
+  for (int i = 0; i < 3; i++) {
+    if (players[i]._name == this->_name) {
+      switch (i) {
+      case 0:
+        std::cout << "You rank 1st, you're the BEST !!! \n";
+        break;
+      case 1:
+        std::cout << "You rank 2nd, soon you will win !!! \n";
+        break;
+      case 2:
+        std::cout << "You rank 3rd, so you have joined the very best !!! \n";
+        break;
+      }
+    }
+  }
 
   std::ofstream fout;
   fout.open(HIGHSCORES_FILENAME, std::ofstream::trunc);

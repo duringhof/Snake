@@ -6,7 +6,7 @@
 class Menu {
 public:
   void displayPlayerNamePrompt();
-  void displayPlayerScore(std::string const &name, int score, int size);
+  void displayPlayerScore(int score);
   std::string const getPlayerName();
 
 private:

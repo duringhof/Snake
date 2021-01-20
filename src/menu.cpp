@@ -18,10 +18,9 @@ void Menu::displayPlayerNamePrompt() {
   _playerName = std::move(playerName);
 };
 
-void Menu::displayPlayerScore(std::string const &name, int score, int size) {
-  std::cout << "Game has terminated succesfully!\n";
-  std::cout << "Player Name: " << name << "\n";
-  std::cout << "Score: " << score << "\n";
+void Menu::displayPlayerScore(int score) {
+  std::cout << "Your Score was: " << score << "\n";
+  std::cout << "The game has terminated succesfully, WELCOME BACK!" << "\n";
 };
 
 std::string const Menu::getPlayerName() {
