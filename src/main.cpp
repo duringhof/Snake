@@ -14,12 +14,18 @@ int main() {
 
   Menu menu;
 
-  menu.displayPlayerNamePrompt();
-  
-  Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
-  Controller controller;
-  Game game(kGridWidth, kGridHeight, menu);
-  game.Run(controller, renderer, kMsPerFrame);
+  while (menu.getPlayerWantsToPlay() == true) {
+
+    if (menu.getPlayerName() == "blank") {
+      menu.displayPlayerNamePrompt();
+    }
+
+    Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
+    Controller controller;
+    Game game(kGridWidth, kGridHeight, menu);
+    game.Run(controller, renderer, kMsPerFrame);
+    menu.displayPlayerContinuePrompt();
+  }
   
   return 0;
 }
